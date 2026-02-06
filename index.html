@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine ❤️</title>
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Comic Sans MS', cursive;
+    overflow: hidden;
+}
+
+/* Mobile only */
+@media (min-width: 768px) {
+    body::before {
+        content: "Please open this on a mobile phone 📱❤️";
+        color: white;
+        font-size: 22px;
+        text-align: center;
+    }
+    .card { display: none; }
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 360px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    animation: pop 1s ease;
+    z-index: 2;
+}
+
+h1 { color: #ff4d6d; }
+
+.names {
+    font-size: 20px;
+    color: #ff4d6d;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 18px;
+    color: #555;
+}
+
+.buttons {
+    margin-top: 25px;
+    position: relative;
+    height: 110px;
+}
+
+button {
+    padding: 10px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+}
+
+#yes {
+    background: #ff4d6d;
+    color: white;
+    position: absolute;
+    left: 20px;
+}
+
+#no {
+    background: #ccc;
+    color: #333;
+    position: absolute;
+    right: 20px;
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    bottom: -30px;
+    font-size: 20px;
+    animation: float 5s linear forwards;
+    color: #ff4d6d;
+    font-weight: bold;
+}
+
+@keyframes float {
+    to {
+        transform: translateY(-110vh) scale(1.3);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Hindi Romantic Song (plays after YES) -->
+<audio id="romanticSong" loop>
+  <source src="https://pagalfree.com/musics/128-Kesariya%20-%20Brahmastra%20128%20Kbps.mp3" type="audio/mpeg">
+</audio>
+<audio id="romanticSong" loop>
+  <source src="https://pagalfree.com/musics/128-Kesariya%20-%20Brahmastra%20128%20Kbps.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+    <h1>Hey My Love ❤️</h1>
+    <div class="names">Ram 💖 Swati</div>
+    <p id="text">Will you be my Valentine?</p>
+
+    <div class="buttons">
+        <button id="yes" onclick="yesClicked()">Yes 😍</button>
+        <button id="no" ontouchstart="moveNo()" onclick="moveNo()">No 🙈</button>
+    </div>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+const noTexts = [
+    "Arre nahi 😜",
+    "Dil se socho ❤️",
+    "Galat button 😅",
+    "Sirf YES chalega 😍",
+    "Bas haan bolo 💓"
+];
+
+const heartTexts = [
+    "❤️ Ram",
+    "💖 Swati",
+    "💞 Ram & Swati",
+    "😘 Love",
+    "❤️ Forever"
+];
+
+function moveNo() {
+    const noBtn = document.getElementById("no");
+    const x = Math.random() * 240 - 120;
+    const y = Math.random() * 80 - 40;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+    document.getElementById("text").innerText =
+        noTexts[Math.floor(Math.random() * noTexts.length)];
+}
+
+function yesClicked() {
+    document.getElementById("text").innerText =
+        "Hamari kahani yahin se shuru hoti hai 💞";
+    document.getElementById("result").innerText =
+        "I love you Manisha ❤️ Happy Valentine’s Day 😘";
+
+    document.getElementById("yes").style.display = "none";
+    document.getElementById("no").style.display = "none";
+
+    document.getElementById("romanticSong").play();
+    startHearts();
+}
+
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerText = heartTexts[Math.floor(Math.random() * heartTexts.length)];
+        heart.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
