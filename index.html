@@ -1,10 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Valentine ❤️</title>
-
 <style>
 body {
     margin: 0;
@@ -80,15 +80,6 @@ button {
     right: 20px;
 }
 
-/* Romantic message area */
-#romanticBox {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #ff4d6d;
-    min-height: 80px;
-    line-height: 1.5;
-}
-
 /* Floating hearts */
 .heart {
     position: fixed;
@@ -107,9 +98,9 @@ button {
 }
 </style>
 </head>
-
 <body>
 
+<!-- Hindi Romantic Song (plays after YES) -->
 <audio id="romanticSong" loop>
   <source src="https://pagalfree.com/musics/128-Kesariya%20-%20Brahmastra%20128%20Kbps.mp3" type="audio/mpeg">
 </audio>
@@ -124,8 +115,7 @@ button {
         <button id="no" ontouchstart="moveNo()" onclick="moveNo()">No 🙈</button>
     </div>
 
-    <!-- Empty space that fills with romance -->
-    <div id="romanticBox"></div>
+    <div class="result" id="result"></div>
 </div>
 
 <script>
@@ -158,32 +148,14 @@ function moveNo() {
 function yesClicked() {
     document.getElementById("text").innerText =
         "Hamari kahani yahin se shuru hoti hai 💞";
+    document.getElementById("result").innerText =
+        "I love you Manisha ❤️ Happy Valentine’s Day 😘";
 
     document.getElementById("yes").style.display = "none";
     document.getElementById("no").style.display = "none";
 
     document.getElementById("romanticSong").play();
     startHearts();
-    showRomanticText();
-}
-
-function showRomanticText() {
-    const text = 
-`Swati ❤️  
-Tum meri zindagi ki sabse khoobsurat wajah ho.  
-Har smile, har khushi tumse judi hai.  
-Aaj, kal aur hamesha…  
-I Love You 💖`;
-
-    let i = 0;
-    const box = document.getElementById("romanticBox");
-    box.innerHTML = "";
-
-    const typing = setInterval(() => {
-        box.innerHTML += text.charAt(i);
-        i++;
-        if (i >= text.length) clearInterval(typing);
-    }, 40);
 }
 
 function startHearts() {
